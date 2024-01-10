@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  &-title {
+    font-size: 3rem;
+    color:rgb(172, 30, 177);
+    text-shadow: rgb(10, 124, 190) 1px 0 10px;
+  }
+}
