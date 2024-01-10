@@ -10,7 +10,7 @@ class TasksList extends React.Component {
 
   render() {
     return (<div className="container-tasks-list">
-      {(this.props.tasks).sort((a, b) => (a.isChecked - b.isChecked) || (a.id - b.id)).map((task, index) => (
+      {(this.props.tasks).sort((a, b) => (a.isChecked - b.isChecked)).map((task, index) => (
         <Task 
           key={index}
           index={index}
