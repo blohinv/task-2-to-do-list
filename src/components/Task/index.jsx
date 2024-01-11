@@ -1,6 +1,8 @@
 import React from "react";
 import editButton from "../../img/edit-button.svg";
 import deleteButton from "../../img/delete-button.svg";
+import doneButton from "../../img/done-button.svg";
+import cancelButton from "../../img/cancel-button.svg";
 import "./style.scss";
 
 class Task extends React.Component {
@@ -10,11 +12,13 @@ class Task extends React.Component {
 
   render() {
     const { 
-      taskInfo, 
-      handleCheckbox, 
-      editTask, 
-      deleteTask, 
-      currentTaskHandler, 
+      taskInfo,
+      handleCheckbox,
+      editTask,
+      confirmEdit,
+      cancelEdit,
+      deleteTask,
+      currentTaskHandler,
       temporaryName
     } = this.props;
 
@@ -26,14 +30,20 @@ class Task extends React.Component {
         }
         disabled={taskInfo.isChecked}
       >
-        <input
-          type="checkbox" 
-          className="task-container__checkbox"
-          checked={taskInfo.isChecked}
-          onChange={() => handleCheckbox(taskInfo.id)}
-        />
         {taskInfo.isEdit
         ? <>
+            <button 
+              type="button"
+              className="task-container__button"
+              onClick={() => confirmEdit(taskInfo)}
+              disabled={taskInfo.isChecked}
+            >
+              <img
+                className="task-container__svg" 
+                src={doneButton} 
+                alt=""
+              />
+            </button>
             <input 
               type="text" 
               className="task-container__name-change"
@@ -43,17 +53,23 @@ class Task extends React.Component {
             <button 
               type="button"
               className="task-container__button"
-              onClick={() => editTask(taskInfo)}
+              onClick={() => cancelEdit(taskInfo)}
               disabled={taskInfo.isChecked}
             >
               <img
                 className="task-container__svg" 
-                src={editButton} 
+                src={cancelButton} 
                 alt=""
               />
             </button>
           </>
         : <>
+            <input
+              type="checkbox" 
+              className="task-container__checkbox"
+              checked={taskInfo.isChecked}
+              onChange={() => handleCheckbox(taskInfo.id)}
+            />
             <p className="task-container__name">
               {taskInfo.name}
             </p>
@@ -71,7 +87,6 @@ class Task extends React.Component {
             </button>
           </>
         }
-        
         <button 
           type="button"
           className="task-container__button"

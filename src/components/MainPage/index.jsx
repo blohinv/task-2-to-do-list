@@ -60,12 +60,18 @@ class MainPage extends React.Component {
     this.setState({ temporaryName: task.name });
   }
 
-  confirmEdit = () => {
-
+  confirmEdit = (task) => {
+    let currentItem = localStorage.getItem(`task-${task.id}`);
+    currentItem = JSON.parse(currentItem);
+    currentItem.name = this.state.temporaryName;
+    task.name = this.state.temporaryName;
+    localStorage.setItem(`task-${task.id}`, JSON.stringify(currentItem));  
+    this.getTasks();
   }
 
   cancelEdit = (task) => {
     task.isEdit = !task.isEdit;
+    this.setState({ temporaryName: '' });
   }
 
   currentTaskHandler = (value) => {
@@ -100,6 +106,8 @@ class MainPage extends React.Component {
             taskInfo={task}
             handleCheckbox={this.handleCheckbox}
             editTask={this.editTask}
+            confirmEdit={this.confirmEdit}
+            cancelEdit={this.cancelEdit}
             deleteTask={this.deleteTask}
             currentTaskHandler={this.currentTaskHandler}
             temporaryName={this.state.temporaryName}

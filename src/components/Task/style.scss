@@ -1,5 +1,5 @@
 .task-container {
-  margin: 10px;
+  margin: 10px 0;
   padding: 10px 20px;
   border: 0px solid black;
   border-radius: 30px;
@@ -7,19 +7,22 @@
   flex-direction: row;
   align-items: center;
 
-  &__checkbox {
-    margin-right: 10px;
-  }
-
   &__name {
     width: 160px;
+    margin-left: 10px;
     word-wrap: break-word;
+
+    &-change {
+      width: 148px;
+      margin: 16px 0;
+    }
   }
 
   &__button {
     width: 24px;
     height: 24px;
     margin: 0px 5px;
+    padding: 0;
     border: 0px solid black;
     background: none;
 
