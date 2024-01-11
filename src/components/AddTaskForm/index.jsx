@@ -11,7 +11,8 @@ class AddTaskForm extends React.Component {
       taskInfo,
       handleChangeTaskInfo,
       addTask,
-      deleteAllTasks
+      deleteAllTasks,
+      validationError
     } = this.props;
 
     return (
@@ -42,6 +43,7 @@ class AddTaskForm extends React.Component {
               Удалить все
             </button>
           </div>
+          <p className="add-task-form-field__validation-error">{validationError}</p>
         </div>
       </div>
     )

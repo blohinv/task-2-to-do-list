@@ -15,6 +15,7 @@ class MainPage extends React.Component {
       id: uid()
     },
     temporaryName: '',
+    validationError: ''
   }
 
   getTasks = () => {
@@ -27,6 +28,7 @@ class MainPage extends React.Component {
     this.setState({ taskInfo:
       { ...this.state.taskInfo, [key]: event.target.value }
     });
+    this.setState({ validationError: '' });
   }
 
   handleCheckbox = (id) => {
@@ -38,7 +40,7 @@ class MainPage extends React.Component {
   }
 
   addTask = (event) => {
-    if (this.state.taskInfo.name.trim() !== '') {
+    if (this.state.taskInfo.name.trim() !== '' && this.state.validationError === '') {
       localStorage.setItem(`task-${this.state.taskInfo.id}`, JSON.stringify(this.state.taskInfo));
       this.setState(() => ({
         tasks: [ ...this.state.tasks, this.state.taskInfo ]
@@ -48,6 +50,8 @@ class MainPage extends React.Component {
         { ...this.state.taskInfo, name: '', id: uid() }
       });
       event.target.value = '';
+    } else {
+      this.setState({ validationError: 'please enter task name!' });
     }
   }
 
@@ -87,6 +91,7 @@ class MainPage extends React.Component {
           handleChangeTaskInfo={this.handleChangeTaskInfo}
           addTask={this.addTask}
           deleteAllTasks={this.deleteAllTasks}
+          validationError={this.state.validationError}
         />
         <div className="container-tasks-list">
         {this.state.tasks.map((task, index) => (
