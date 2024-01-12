@@ -15,7 +15,7 @@ class MainPage extends React.Component {
       isEdit: false,
       id: uid()
     },
-    temporaryName: '',
+    changeName: '',
     errorMessage: ''
   }
 
@@ -27,7 +27,6 @@ class MainPage extends React.Component {
     this.setState({ taskInfo:
       { ...this.state.taskInfo, [key]: value }
     });
-    this.setState({ errorMessage: '' });
   }
 
   handleCheckbox = (task) => {
@@ -41,7 +40,8 @@ class MainPage extends React.Component {
 
   addTask = () => {
     if (!this.state.taskInfo.name.trim()) {
-      return this.setState({ errorMessage: 'please enter task name!' });
+      this.setState({ errorMessage: 'please enter task name!' });
+      return;
     }
     this.state.tasks.push(this.state.taskInfo);
     localStorage.setItem(`task-${this.state.taskInfo.id}`, JSON.stringify(this.state.taskInfo));
@@ -54,38 +54,38 @@ class MainPage extends React.Component {
 
   editTask = (task) => {
     task.isEdit = !task.isEdit;
-    this.setState({ temporaryName: task.name });
+    this.setState({ changeName: task.name });
   }
 
   confirmEdit = (task) => {
     let currentItem = localStorage.getItem(`task-${task.id}`);
-    if (currentItem !== '') {
+    if (currentItem) {
       currentItem = JSON.parse(currentItem);
-      currentItem.name = this.state.temporaryName;
-      task.name = this.state.temporaryName;
+      currentItem.name = this.state.changeName;
+      task.name = this.state.changeName;
+      task.isEdit = !task.isEdit;
       localStorage.setItem(`task-${task.id}`, JSON.stringify(currentItem));  
       this.setState({ tasks: [...this.state.tasks]});
+      this.sortTasks();
     }
   }
 
   cancelEdit = (task) => {
     task.isEdit = !task.isEdit;
-    this.setState({ temporaryName: '' });
+    this.setState({ changeName: '' });
   }
 
   currentTaskHandler = (newName) => {
-    this.setState({ temporaryName: newName });
+    this.setState({ changeName: newName });
   }
 
   deleteTask = (id) => {
-    this.setState(() => ({
-      tasks: [ ...this.state.tasks.filter(task => task.id !== id) ]
-    }))
+    this.setState({ tasks: [ ...this.state.tasks.filter(task => task.id !== id) ] });
     localStorage.removeItem(`task-${id}`);
   }
 
   deleteAllTasks = () => {
-    this.setState({ tasks: [] })
+    this.setState({ tasks: [] });
     localStorage.clear();
   }
   
@@ -104,29 +104,35 @@ class MainPage extends React.Component {
           taskInfo={this.state.taskInfo}
           handleChangeTaskInfo={this.handleChangeTaskInfo}
           addTask={this.addTask}
-          deleteAllTasks={this.deleteAllTasks}
           errorMessage={this.state.errorMessage}
         />
+        <button 
+          type="button" 
+          className={this.state.tasks.length > 0 ? "container__button" : "container__button hide"}
+          onClick={this.deleteAllTasks}
+        >
+          Удалить все
+        </button>
         <div className="container-tasks-list">
-        {this.state.tasks.map((task, index = uid(5)) => (
-          task.isEdit 
-          ? <EditTask 
-              key={index}
-              index={index}
-              taskInfo={task}
-              confirmEdit={this.confirmEdit}
-              cancelEdit={this.cancelEdit}
-              currentTaskHandler={this.currentTaskHandler}
-              temporaryName={this.state.temporaryName}
-            />
-          : <Task 
-            key={index}
-            taskInfo={task}
-            handleCheckbox={this.handleCheckbox}
-            editTask={this.editTask}
-            deleteTask={this.deleteTask}
-          />
-        ))}
+          {this.state.tasks.map((task) => (
+            task.isEdit 
+              ? <EditTask 
+                  key={task.id}
+                  taskInfo={task}
+                  confirmEdit={this.confirmEdit}
+                  cancelEdit={this.cancelEdit}
+                  currentTaskHandler={this.currentTaskHandler}
+                  changeName={this.state.changeName}
+                />
+              : <Task 
+                key={task.id}
+                taskInfo={task}
+                handleCheckbox={this.handleCheckbox}
+                editTask={this.editTask}
+                deleteTask={this.deleteTask}
+              />
+            )
+          )}
         </div>
       </div>
     )

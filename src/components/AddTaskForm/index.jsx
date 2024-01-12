@@ -12,7 +12,6 @@ class AddTaskForm extends React.Component {
       taskInfo,
       handleChangeTaskInfo,
       addTask,
-      deleteAllTasks,
       errorMessage
     } = this.props;
 
@@ -28,22 +27,13 @@ class AddTaskForm extends React.Component {
             onChange={(event) => handleChangeTaskInfo('name', event.target.value)} 
             placeholder="Введите название"
           />
-          <div className="add-task-form-field-actions">
-            <button 
-              type="button" 
-              className="add-task-form-field-actions__button"
-              onClick={addTask}
-            >
-              Добавить
-            </button>
-            <button 
-              type="button" 
-              className="add-task-form-field-actions__button"
-              onClick={deleteAllTasks}
-            >
-              Удалить все
-            </button>
-          </div>
+          <button 
+            type="button" 
+            className="add-task-form-field__button"
+            onClick={addTask}
+          >
+            Добавить
+          </button>
         </div>
         <ErrorMessage message={errorMessage} />
       </div>

@@ -14,7 +14,7 @@ class EditTask extends React.Component {
       confirmEdit,
       cancelEdit,
       currentTaskHandler,
-      temporaryName
+      changeName
     } = this.props;
 
     return (
@@ -33,7 +33,7 @@ class EditTask extends React.Component {
         <input 
           type="text" 
           className="edit-task__change"
-          value={temporaryName}
+          value={changeName}
           onChange={(event) => currentTaskHandler(event.target.value)}
         />
         <button 

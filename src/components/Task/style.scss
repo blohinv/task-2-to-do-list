@@ -34,18 +34,10 @@
     padding: 0;
     border: 0px solid black;
     background: none;
-
-    &:disabled {
-      pointer-events: none;
-    }
   }
 
   &__svg {
     width: 24px;
     height: 24px;
-    
-    &:hover {
-      cursor: pointer;
-    }
   }
 }

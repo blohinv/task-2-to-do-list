@@ -19,23 +19,16 @@
       resize: none;
     }
 
-    &-actions {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    &__button { 
+      margin-top: 10px;
+      width: 120px;
+      height: 40px;
+      border-radius: 20px;
+      font-size: 1.1rem;
 
-      &__button { 
-        margin-top: 10px;
-        width: 120px;
-        height: 40px;
-        border-radius: 20px;
-        font-size: 1.1rem;
-
-        &:hover {
-          background: rgb(151, 149, 149);
-          transform: scale(1.1);
-        }
+      &:hover {
+        background: rgb(151, 149, 149);
+        transform: scale(1.1);
       }
     }
   }
