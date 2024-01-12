@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorMessage from "../ErrorMessage";
 import "./style.scss";
 
 class AddTaskForm extends React.Component {
@@ -12,7 +13,7 @@ class AddTaskForm extends React.Component {
       handleChangeTaskInfo,
       addTask,
       deleteAllTasks,
-      validationError
+      errorMessage
     } = this.props;
 
     return (
@@ -24,7 +25,7 @@ class AddTaskForm extends React.Component {
             rows="4"
             cols="19"
             value={taskInfo.name}
-            onChange={(event) => handleChangeTaskInfo(event, 'name')} 
+            onChange={(event) => handleChangeTaskInfo('name', event.target.value)} 
             placeholder="Введите название"
           />
           <div className="add-task-form-field-actions">
@@ -43,8 +44,8 @@ class AddTaskForm extends React.Component {
               Удалить все
             </button>
           </div>
-          <p className="add-task-form-field__validation-error">{validationError}</p>
         </div>
+        <ErrorMessage message={errorMessage} />
       </div>
     )
   }

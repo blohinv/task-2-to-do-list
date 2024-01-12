@@ -1,4 +1,4 @@
-.task {
+.edit-task {
   margin: 10px 0;
   padding: 10px 20px;
   border: 0px solid black;
@@ -6,25 +6,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  background: red;
 
-  &-checked {
-    background: rgb(57, 221, 57);
-    opacity: 0.9;
-  }
-
-  &-unchecked {
-    background: red;
-  }
-
-  &__name {
-    width: 160px;
-    margin-left: 10px;
-    word-wrap: break-word;
-
-    &-change {
-      width: 148px;
-      margin: 16px 0;
-    }
+  &__change {
+    width: 182px;
+    margin: 15px 0;
   }
 
   &__button {
