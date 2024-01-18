@@ -1,0 +1,29 @@
+.edit-task {
+  margin: 10px 0;
+  padding: 10px 20px;
+  border: 0px solid black;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: red;
+
+  &__change {
+    width: 182px;
+    margin: 15px 0;
+  }
+
+  &__button {
+    width: 24px;
+    height: 24px;
+    margin: 0px 5px;
+    padding: 0;
+    border: 0px solid black;
+    background: none;
+  }
+
+  &__svg {
+    width: 24px;
+    height: 24px;
+  }
+}

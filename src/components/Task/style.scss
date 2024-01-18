@@ -1,0 +1,43 @@
+.task {
+  margin: 10px 0;
+  padding: 10px 20px;
+  border: 0px solid black;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &-checked {
+    background: rgb(57, 221, 57);
+    opacity: 0.9;
+  }
+
+  &-unchecked {
+    background: red;
+  }
+
+  &__name {
+    width: 160px;
+    margin-left: 10px;
+    word-wrap: break-word;
+
+    &-change {
+      width: 148px;
+      margin: 16px 0;
+    }
+  }
+
+  &__button {
+    width: 24px;
+    height: 24px;
+    margin: 0px 5px;
+    padding: 0;
+    border: 0px solid black;
+    background: none;
+  }
+
+  &__svg {
+    width: 24px;
+    height: 24px;
+  }
+}

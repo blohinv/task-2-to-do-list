@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  &-title {
+    font-size: 3rem;
+    color:rgb(172, 30, 177);
+    text-shadow: rgb(10, 124, 190) 1px 0 10px;
+  }
+
+  &__button { 
+    margin-top: 10px;
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+
+    &:hover {
+      background: rgb(151, 149, 149);
+      transform: scale(1.1);
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
